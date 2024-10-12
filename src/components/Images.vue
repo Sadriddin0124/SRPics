@@ -9,7 +9,7 @@
                 :src="item.urls.small_s3"  
                 class="align-end object-fit-cover"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                :height="width < 960 && width > 700 ? '200px' : width > 700 && width > 420 ? '300px' : width < 420 ? '180px' : '300px'"
+                :height="width < 960 && width > 700 ? '200px' : width > 700 && width > 420 ? '300px' : width < 420 ? 'auto' : '300px'"
                 cover
               >
                 <v-card-title
