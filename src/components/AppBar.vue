@@ -1,11 +1,8 @@
 <template>
   <v-app-bar class=" bg-orange-darken-2 position-fixed">
-    <!-- <template v-slot:prepend>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-    </template> -->
-
-    <v-app-bar-title>SR Pics</v-app-bar-title>
-
+    <v-app-bar-title>
+      <router-link to="/" class=" text-decoration-none text-white">SR Pics</router-link>
+    </v-app-bar-title>
     <form class=" w-25 d-flex justify-end pr-3" @submit="searchImage">
         <v-text-field
         width="100%"
@@ -25,7 +22,10 @@
         <v-btn icon="mdi-magnify" v-else @click="active = true"></v-btn>
     </form>
     <template v-slot:append>
-      <v-btn icon="mdi-heart" :class="active ? 'd-none' : 'd-block'"></v-btn>
+      <router-link to="/liked" class=" text-decoration-none text-white">
+        <v-btn icon="mdi-heart" :class="active ? 'd-none' : 'd-block'">
+        </v-btn>
+      </router-link>
       <v-btn icon="mdi-dots-vertical" :class="active ? 'd-none' : 'd-block'"></v-btn>
     </template>
   </v-app-bar>

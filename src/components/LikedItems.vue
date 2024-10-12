@@ -73,7 +73,6 @@
                   color="medium-emphasis"
                   icon="mdi-share-variant"
                   size="small"
-                  @click="storeImages.shareContent(item)"
                 ></v-btn>
               </v-card-actions>
             </v-card>
@@ -95,7 +94,9 @@ import { computed, onMounted, onBeforeUnmount, ref } from "vue";
 import { useImagesStore } from "@/stores/app";
 
 const storeImages = useImagesStore();
-const images = computed(() => storeImages?.data?.results || []);
+const images = computed(() => storeImages?.likedImages || []);
+console.log(images.value);
+
 const loadingData = [1, 2, 3, 4, 5];
 const currentPage = ref(1);
 const likedItems = ref(JSON.parse(localStorage.getItem("liked")) || []); // Reaktiv likedItems
@@ -107,7 +108,7 @@ onMounted(() => {
   } else {
     currentPage.value = 1;
   }
-  storeImages.fetchData(currentPage.value);
+  storeImages.likedPhotos(currentPage.value);
 });
 
 const switchPage = () => {

@@ -4,6 +4,4 @@
 
 <script setup>
 import Images from '@/components/Images.vue';
-
-  //
 </script>
