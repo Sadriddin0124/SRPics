@@ -34,13 +34,12 @@
                 :height="
                   width < 960 && width > 700
                     ? '200px'
-                    : width > 700 && width > 420
-                    ? '300px'
-                    : width < 420
+                    : width < 700
                     ? 'auto'
                     : '300px'
                 "
                 cover
+                min-height="200px"
               >
                 <v-card-title
                   class="text-white"

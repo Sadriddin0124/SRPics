@@ -73,6 +73,7 @@
                   color="medium-emphasis"
                   icon="mdi-share-variant"
                   size="small"
+                  @click="storeImages.shareContent(item)"
                 ></v-btn>
               </v-card-actions>
             </v-card>
