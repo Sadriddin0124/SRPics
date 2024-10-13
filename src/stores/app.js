@@ -13,8 +13,21 @@ export const useImagesStore = defineStore('images', () => {
   const error = ref(null);
   const likedItems = JSON.parse(localStorage.getItem("liked")) // Reaktiv likedItems
   const likedImages = ref(null)
+  const barActive = ref(false)
   
   //actions
+  const changeBarActive = () => {
+    barActive.value = !barActive.value
+  }
+  const changeTheme = () => {
+    let theme = localStorage.getItem("theme")
+    if (theme === "dark") {
+      localStorage.setItem("theme", "light")
+    }else if(theme === "light"){
+      localStorage.setItem("theme", "dark")
+    }
+    window.location.reload()
+  }
   //get
   const fetchData = async (page) => {
     loading.value = true;
@@ -86,12 +99,15 @@ export const useImagesStore = defineStore('images', () => {
     error,
     collections,
     likedImages,
+    barActive,
 
     //actions
 
     fetchData,
     searchData,
     likedPhotos,
-    shareContent
+    shareContent,
+    changeBarActive,
+    changeTheme
   }
 })

@@ -3,6 +3,7 @@ import { setupLayouts } from 'virtual:generated-layouts'
 import { routes } from 'vue-router/auto-routes'
 import Images from '@/pages/images.vue';
 import Liked from '@/pages/liked.vue';
+import Profile from '@/pages/Profile.vue';
 
 // Yangi qo'lda marshrutlar
 const customRoutes = [
@@ -15,6 +16,11 @@ const customRoutes = [
     path: '/liked',
     name: 'Liked',
     component: Liked, // Qo'shilgan sahifani import qilish
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile
   }
 ];
 

@@ -1,6 +1,7 @@
 <template>
   <v-app v-if="me">
     <app-bar/>
+    <app-menu/>
     <v-main>
       <router-view />
     </v-main>

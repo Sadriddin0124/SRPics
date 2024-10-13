@@ -1,10 +1,3 @@
-/**
- * plugins/vuetify.js
- *
- * Framework documentation: https://vuetifyjs.com`
- */
-
-// Styles
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 
@@ -12,8 +5,9 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+let theme = localStorage.getItem('theme')
 export default createVuetify({
   theme: {
-    defaultTheme: 'dark',
+    defaultTheme: theme ? theme : 'light',
   },
 })

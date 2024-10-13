@@ -1,7 +1,13 @@
 <template>
   <v-app-bar class=" bg-orange-darken-2 position-fixed">
     <v-app-bar-title>
-      <router-link to="/" class=" text-decoration-none text-white">SR Pics</router-link>
+      <router-link to="/" class=" text-decoration-none text-white">
+        <v-avatar color="purple" class=" position-relative">
+          <img src="../assets/male.png" alt="User" class=" rounded-circle w-100 h-100" v-if="me.gender === 'male'">
+          <img src="../assets/female.png" alt="User" class=" rounded-circle w-100 h-100" v-else-if="me.gender === 'female'">
+          <img src="../assets/user.png" alt="User" class=" rounded-circle w-100 h-100" v-else>
+        </v-avatar>
+      </router-link>
     </v-app-bar-title>
     <form class=" w-25 d-flex justify-end pr-3" @submit="searchImage">
         <v-text-field
@@ -26,7 +32,7 @@
         <v-btn icon="mdi-heart" :class="active ? 'd-none' : 'd-block'">
         </v-btn>
       </router-link>
-      <v-btn icon="mdi-dots-vertical" :class="active ? 'd-none' : 'd-block'"></v-btn>
+      <v-btn icon="mdi-dots-vertical" :class="active ? 'd-none' : 'd-block'" @click="store.changeBarActive"></v-btn>
     </template>
   </v-app-bar>
 </template>
@@ -38,9 +44,8 @@ const store = useImagesStore()
 const searchValue = ref('')
 const getData = async() => {
     const image = await store.searchData(searchValue.value)
-    console.log(image);
 }
-
+const me = ref(JSON.parse(localStorage.getItem("me"))); // Reaktiv likedItems
 const loaded = ref(false);
 const loading = ref(false);
 
