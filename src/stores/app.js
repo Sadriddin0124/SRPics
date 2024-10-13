@@ -14,7 +14,6 @@ export const useImagesStore = defineStore('images', () => {
   const likedItems = JSON.parse(localStorage.getItem("liked")) // Reaktiv likedItems
   const likedImages = ref(null)
   const barActive = ref(false)
-  const searchActive = ref(false)
   
   //actions
   const changeBarActive = () => {
@@ -72,7 +71,6 @@ export const useImagesStore = defineStore('images', () => {
     try {
       const response = await axios.get(`${BASE_URL}/search/photos?query=${value}&_page=1&per_page=30&client_id=${client_id}`);
       data.value = response.data;
-      searchActive.value = true
       return response
     } catch (err) {
       error.value = err.message || 'Something went wrong';
@@ -122,7 +120,6 @@ export const useImagesStore = defineStore('images', () => {
     carousel,
     likedImages,
     barActive,
-    searchActive,
 
     //actions
 

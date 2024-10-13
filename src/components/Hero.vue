@@ -2,7 +2,7 @@
   <v-carousel class="slide" show-arrows="hover" cycle hide-delimiter-background interval="3000" hide-delimiters>
     <v-carousel-item v-for="(slide, i) in images" :key="i">
         <div class="d-flex fill-height justify-center align-center full-width position-relative">
-            <img :src="slide?.urls.regular" :alt="slide?.alt_description" class="slider_img">
+            <img :src="slide?.urls.small" :alt="slide?.alt_description" class="slider_img">
             <v-container class="h-100 position-relative z-2 w-100 d-flex container_slide">
                 <h2 class=" text-h3 font-weight-bold">Welcome to our website!</h2>
                 <p>You can find beautiful images that you wanted. Just type and see your choices.</p>

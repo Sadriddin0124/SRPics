@@ -4,7 +4,7 @@
       class="mx-auto bg-grey-darken-4 gap-0 rounded-0 pt-6"
       max-width="1200"
     >
-      <v-container fluid class="px-0 px-sm-5">
+      <v-container fluid class="px-0 px-sm-5" v-if="likedItems.length">
         <v-row v-if="storeImages.loading">
           <v-col v-for="(item, index) in loadingData"
             class=" mb-2"
@@ -80,6 +80,9 @@
           </v-col>
         </v-row>
       </v-container>
+      <h2 class="text-h2 h-100">
+        Not found!
+      </h2>
     </v-card>
   </div>
 </template>
@@ -105,11 +108,6 @@ onMounted(() => {
   }
   storeImages.likedPhotos(currentPage.value);
 });
-
-const switchPage = () => {
-  localStorage.setItem("page", currentPage.value);
-  storeImages.fetchData(currentPage.value); // Refresh data instead of reload
-};
 
 const downloadImage = (item) => {
   const imageUrl = item.urls.raw;
@@ -159,3 +157,13 @@ const disLikedPhoto = (id) => {
   localStorage.setItem("liked", JSON.stringify(likedItems.value)); // Update localStorage
 };
 </script>
+
+<style scoped>
+h2 {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} 
+</style>
