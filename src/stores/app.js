@@ -21,12 +21,15 @@ export const useImagesStore = defineStore('images', () => {
   }
   const changeTheme = () => {
     let theme = localStorage.getItem("theme")
-    if (theme === "dark") {
+    if (!theme) {
+      localStorage.setItem("theme", "dark")
+    }else if (theme === "dark") {
       localStorage.setItem("theme", "light")
     }else if(theme === "light"){
       localStorage.setItem("theme", "dark")
     }
     window.location.reload()
+
   }
   //get
   const fetchData = async (page) => {
