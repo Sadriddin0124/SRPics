@@ -49,7 +49,7 @@
         >
           save
         </v-btn>
-        <v-btn append-icon="$logOut" color="red" variant="outlined" block class="mt-3">
+        <v-btn append-icon="$logOut" color="red" variant="outlined" block class="mt-3" @click="logOut">
             Log Out
         </v-btn>
     </v-responsive>
@@ -59,7 +59,10 @@
   <script setup>
   import { ref } from 'vue';
   const me = ref(JSON.parse(localStorage.getItem("me"))); // Reaktiv likedItems
-
+  const logOut = () => {
+    localStorage.removeItem("me")
+    window.location.reload()
+  }
   const imageActive = ref(false);
   const changeGender = (gender) => {
     const aboutMe = {...me.value, gender: gender}
