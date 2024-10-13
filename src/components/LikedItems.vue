@@ -20,7 +20,7 @@
         </v-row>
         <v-row dense v-else>
           <v-col
-            v-for="(item, index) in images"
+            v-for="(item, index) in likedItems"
             :key="index"
             :cols="
               width < 1024 && width > 700 ? 6 : width < 700 ? 12 : colsFn(index)
@@ -28,7 +28,7 @@
           >
             <v-card class="rounded-0">
               <v-img
-                :src="item.urls.small_s3"
+                :src="item"
                 class="align-end object-fit-cover"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 :height="
@@ -53,14 +53,14 @@
                   color="red"
                   icon="mdi-heart"
                   size="small"
-                  @click="disLikedPhoto(item?.id)"
-                  v-if="likedItems.includes(item?.id)"
+                  @click="disLikedPhoto(item)"
+                  v-if="likedItems.includes(item)"
                 ></v-btn>
                 <v-btn
                   color="medium-emphasis"
                   icon="mdi-heart"
                   size="small"
-                  @click="likedPhoto(item?.id)"
+                  @click="likedPhoto(item)"
                   v-else
                 ></v-btn>
                 <v-btn
@@ -81,12 +81,6 @@
         </v-row>
       </v-container>
     </v-card>
-    <v-pagination
-      :length="12"
-      v-model="currentPage"
-      @click="switchPage"
-      class="mt-6"
-    ></v-pagination>
   </div>
 </template>
 

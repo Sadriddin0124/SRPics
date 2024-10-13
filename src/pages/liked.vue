@@ -1,11 +1,12 @@
 <template>
     <div>
-        <Collections/>
+        <LikedItems/>
     </div>
 </template>
 
 <script setup>
-import Collections from '@/components/LikedItems.vue';
+import LikedItems from '@/components/LikedItems.vue';
+
 
 
 </script>

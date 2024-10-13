@@ -13,6 +13,7 @@ declare module 'vue' {
     Auth: typeof import('./src/components/Auth.vue')['default']
     Collections: typeof import('./src/components/LikedItems.vue')['default']
     HelloWorld: typeof import('./src/components/Images.vue')['default']
+    Hero: typeof import('./src/components/Hero.vue')['default']
     Images: typeof import('./src/components/Images.vue')['default']
     LikedItems: typeof import('./src/components/LikedItems.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

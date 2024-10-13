@@ -71,8 +71,7 @@
 };
 const SaveData = () => {
     localStorage.setItem("me", JSON.stringify(me.value))
-    console.log(me);
-    
+    window.location.reload()    
   }
   </script>
   <style scoped>

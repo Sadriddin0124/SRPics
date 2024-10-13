@@ -8,17 +8,26 @@ export const useImagesStore = defineStore('images', () => {
   // state
 
   const data = ref(null);
-  const collections = ref(null);
+  const carousel = ref(null);
   const loading = ref(false);
   const error = ref(null);
   const likedItems = JSON.parse(localStorage.getItem("liked")) // Reaktiv likedItems
   const likedImages = ref(null)
   const barActive = ref(false)
+  const searchActive = ref(false)
   
   //actions
   const changeBarActive = () => {
     barActive.value = !barActive.value
   }
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const changeTheme = () => {
     let theme = localStorage.getItem("theme")
     if (!theme) {
@@ -29,15 +38,27 @@ export const useImagesStore = defineStore('images', () => {
       localStorage.setItem("theme", "dark")
     }
     window.location.reload()
-
   }
   //get
   const fetchData = async (page) => {
     loading.value = true;
     error.value = null;
     try {
-      const response = await axios.get(`${BASE_URL}/search/photos?query=latest&_page=${page}&per_page=30&client_id=${client_id}`);
+      const response = await axios.get(`${BASE_URL}/search/photos?query=${page}&_page=${page}&per_page=30&client_id=${client_id}`);
       data.value = response.data;
+      console.log(response.data);
+    } catch (err) {
+      error.value = err.message || 'Something went wrong';
+    } finally {
+      loading.value = false;
+    }
+  };
+  const carouselData = async () => {
+    loading.value = true;
+    error.value = null;
+    try {
+      const response = await axios.get(`${BASE_URL}/search/photos?query=season&_page=1&per_page=30&client_id=${client_id}`);
+      carousel.value = response.data;
       console.log(response.data);
     } catch (err) {
       error.value = err.message || 'Something went wrong';
@@ -51,7 +72,8 @@ export const useImagesStore = defineStore('images', () => {
     try {
       const response = await axios.get(`${BASE_URL}/search/photos?query=${value}&_page=1&per_page=30&client_id=${client_id}`);
       data.value = response.data;
-      return response.data
+      searchActive.value = true
+      return response
     } catch (err) {
       error.value = err.message || 'Something went wrong';
     } finally {
@@ -65,7 +87,6 @@ export const useImagesStore = defineStore('images', () => {
       const response = await axios.get(`${BASE_URL}/search/photos?query=latest&_page=${page}&per_page=30&client_id=${client_id}`);
       const filtered = response.data.results.filter(item=> likedItems.includes(item?.id))
       likedImages.value = filtered;
-      console.log(filtered);
     } catch (err) {
       error.value = err.message || 'Something went wrong';
     } finally {
@@ -76,9 +97,7 @@ export const useImagesStore = defineStore('images', () => {
   //functions
   const shareContent = async (item) => {
     const shareData = {
-      title: item?.description,
-      text: item?.alt_description,
-      url: item?.links.download, // Replace with your URL
+      url: item, // Replace with your URL
     };
   
     try {
@@ -100,9 +119,10 @@ export const useImagesStore = defineStore('images', () => {
     data,
     loading,
     error,
-    collections,
+    carousel,
     likedImages,
     barActive,
+    searchActive,
 
     //actions
 
@@ -111,6 +131,8 @@ export const useImagesStore = defineStore('images', () => {
     likedPhotos,
     shareContent,
     changeBarActive,
-    changeTheme
+    changeTheme,
+    carouselData,
+    scrollToTop
   }
 })

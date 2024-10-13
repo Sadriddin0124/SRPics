@@ -1,7 +1,7 @@
 <template>
-  <div class="full-width fill-height bg-grey-darken-4">
+  <div class="full-width fill-height">
     <v-card
-      class="mx-auto bg-grey-darken-4 gap-0 rounded-0 pt-6"
+      class="mx-auto gap-0 rounded-0"
       max-width="1200"
     >
       <v-container fluid class="px-0 px-sm-5">
@@ -52,14 +52,14 @@
                   color="red"
                   icon="mdi-heart"
                   size="small"
-                  @click="disLikedPhoto(item?.id)"
-                  v-if="likedItems.includes(item?.id)"
+                  @click="disLikedPhoto(item?.urls?.small)"
+                  v-if="likedItems.includes(item?.urls?.small)"
                 ></v-btn>
                 <v-btn
                   color="medium-emphasis"
                   icon="mdi-heart"
                   size="small"
-                  @click="likedPhoto(item?.id)"
+                  @click="likedPhoto(item?.urls?.small)"
                   v-else
                 ></v-btn>
                 <v-btn
@@ -72,7 +72,7 @@
                   color="medium-emphasis"
                   icon="mdi-share-variant"
                   size="small"
-                  @click="storeImages.shareContent(item)"
+                  @click="storeImages.shareContent(item?.links.download)"
                 ></v-btn>
               </v-card-actions>
             </v-card>

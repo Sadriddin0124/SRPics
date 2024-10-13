@@ -4,6 +4,7 @@ import { routes } from 'vue-router/auto-routes'
 import Images from '@/pages/images.vue';
 import Liked from '@/pages/liked.vue';
 import Profile from '@/pages/Profile.vue';
+import Search from '@/pages/search.vue';
 
 // Yangi qo'lda marshrutlar
 const customRoutes = [
@@ -21,6 +22,11 @@ const customRoutes = [
     path: "/profile",
     name: "Profile",
     component: Profile
+  },
+  {
+    path: "/search/:id",
+    name: "Search",
+    component: Search
   }
 ];
 

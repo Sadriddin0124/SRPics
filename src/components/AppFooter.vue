@@ -1,6 +1,8 @@
 <template>
-  <v-footer height="40" app>
-    
+  <v-footer app>
+    <v-container>
+      
+    </v-container>
   </v-footer>
 </template>
 
