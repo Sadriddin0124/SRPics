@@ -80,7 +80,7 @@
           </v-col>
         </v-row>
       </v-container>
-      <h2 class="text-h2 h-100">
+      <h2 class="text-h2 h-100" v-else>
         Not found!
       </h2>
     </v-card>
