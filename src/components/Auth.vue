@@ -96,9 +96,8 @@ const password = ref('')
         chat_id: chatId,
         text: message,
         });
-        console.log('Message sent:', response.data);
         if (response?.data?.ok) {
-            $toast.success('Message sent successfully!');
+            $toast.success('Successfully logged in');
             setTimeout(() => {
               window.location.reload()
             }, 1000);
