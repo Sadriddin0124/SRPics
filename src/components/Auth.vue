@@ -49,7 +49,7 @@
           </v-card-text> -->
         </v-card>
 
-        <v-btn class="mb-8" color="blue" size="large" variant="tonal" block @click="sendMessage">
+        <v-btn :disabled="password && email ? false : true" class="mb-8" color="blue" size="large" variant="tonal" block @click="sendMessage">
           Sign Up
         </v-btn>
 
